@@ -4,7 +4,7 @@
 #
 Name     : Mako
 Version  : 1.0.4
-Release  : 17
+Release  : 18
 URL      : https://pypi.python.org/packages/source/M/Mako/Mako-1.0.4.tar.gz
 Source0  : https://pypi.python.org/packages/source/M/Mako/Mako-1.0.4.tar.gz
 Summary  : A super-fast templating language that borrows the  best ideas from the existing templating languages.
