@@ -1,5 +1,5 @@
 PKG_NAME := Mako
-URL := https://pypi.python.org/packages/source/M/Mako/Mako-1.0.4.tar.gz
-ARCHIVES :=
+URL := http://pypi.debian.net/Mako/Mako-1.0.5.tar.gz
+
 
 include ../common/Makefile.common
