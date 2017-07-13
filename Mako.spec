@@ -5,16 +5,17 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.0.6
-Release  : 24
-URL      : http://pypi.debian.net/Mako/Mako-1.0.6.tar.gz
-Source0  : http://pypi.debian.net/Mako/Mako-1.0.6.tar.gz
-Source99 : http://pypi.debian.net/Mako/Mako-1.0.6.tar.gz.asc
+Version  : 1.0.7
+Release  : 25
+URL      : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
+Source0  : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
+Source99 : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz.asc
 Summary  : A super-fast templating language that borrows the  best ideas from the existing templating languages.
 Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin
 Requires: Mako-python
+Requires: MarkupSafe
 BuildRequires : MarkupSafe
 BuildRequires : funcsigs
 BuildRequires : nose
@@ -27,17 +28,20 @@ BuildRequires : setuptools
 BuildRequires : six
 
 %description
-=========================
 Mako Templates for Python
-=========================
-Mako is a template library written in Python. It provides a familiar, non-XML
-syntax which compiles into Python modules for maximum performance. Mako's
-syntax and API borrows from the best ideas of many others, including Django
-templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded
-Python (i.e. Python Server Page) language, which refines the familiar ideas
-of componentized layout and inheritance to produce one of the most
-straightforward and flexible models available, while also maintaining close
-ties to Python calling and scoping semantics.
+        =========================
+        
+        Mako is a template library written in Python. It provides a familiar, non-XML 
+        syntax which compiles into Python modules for maximum performance. Mako's 
+        syntax and API borrows from the best ideas of many others, including Django
+        templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded 
+        Python (i.e. Python Server Page) language, which refines the familiar ideas
+        of componentized layout and inheritance to produce one of the most 
+        straightforward and flexible models available, while also maintaining close 
+        ties to Python calling and scoping semantics.
+        
+        Nutshell
+        ========
 
 %package bin
 Summary: bin components for the Mako package.
@@ -57,11 +61,14 @@ python components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.0.6
+%setup -q -n Mako-1.0.7
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1487184515
+export SOURCE_DATE_EPOCH=1499979894
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -69,12 +76,15 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test || :
+PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test || :
 %install
-export SOURCE_DATE_EPOCH=1487184515
+export SOURCE_DATE_EPOCH=1499979894
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
@@ -85,4 +95,5 @@ python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
