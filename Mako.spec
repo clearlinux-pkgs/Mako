@@ -6,7 +6,7 @@
 #
 Name     : Mako
 Version  : 1.0.7
-Release  : 26
+Release  : 27
 URL      : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source0  : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source99 : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz.asc
@@ -14,6 +14,7 @@ Summary  : A super-fast templating language that borrows the  best ideas from th
 Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin
+Requires: Mako-legacypython
 Requires: Mako-python
 Requires: MarkupSafe
 BuildRequires : MarkupSafe
@@ -51,9 +52,18 @@ Group: Binaries
 bin components for the Mako package.
 
 
+%package legacypython
+Summary: legacypython components for the Mako package.
+Group: Default
+
+%description legacypython
+legacypython components for the Mako package.
+
+
 %package python
 Summary: python components for the Mako package.
 Group: Default
+Requires: Mako-legacypython
 Provides: mako-python
 
 %description python
@@ -68,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1503120570
+export SOURCE_DATE_EPOCH=1505005671
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -78,7 +88,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test || :
 %install
-export SOURCE_DATE_EPOCH=1503120570
+export SOURCE_DATE_EPOCH=1505005671
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -93,7 +103,10 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/mako-render
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
 /usr/lib/python3*/*
