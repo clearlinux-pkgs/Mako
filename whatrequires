@@ -5,6 +5,7 @@ at-spi2-core
 atk
 babl
 cheese
+colord
 faba-icon-theme
 gcr
 gdk-pixbuf
