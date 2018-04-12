@@ -7,6 +7,7 @@ atk
 babl
 cheese
 colord
+compat-gtksourceview-soname3
 faba-icon-theme
 file-roller
 gcr
@@ -32,10 +33,12 @@ gst-plugins-good
 gstreamer
 gstreamer-vaapi
 gtk+
+gtksourceview
 harfbuzz
 hexchat
 ibus
 json-glib
+libdazzle
 libgepub
 libgudev
 libgweather
