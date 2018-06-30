@@ -34,14 +34,15 @@ gstreamer
 gstreamer-vaapi
 gtk+
 gtksourceview
+gvfs
 harfbuzz
 hexchat
 ibus
+intel-gpu-tools
 json-glib
 libdazzle
 libgepub
 libgudev
-libgweather
 libmediaart
 librsvg
 libsoup
@@ -53,7 +54,6 @@ ostree
 pango
 spice-gtk
 totem
-totem-pl-parser
 upower
 virt-viewer
 webkitgtk

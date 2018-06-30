@@ -6,7 +6,7 @@
 #
 Name     : Mako
 Version  : 1.0.7
-Release  : 38
+Release  : 39
 URL      : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source0  : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source99 : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz.asc
@@ -15,21 +15,19 @@ Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin
 Requires: Mako-python3
+Requires: Mako-license
 Requires: Mako-python
 Requires: MarkupSafe
 BuildRequires : MarkupSafe
-BuildRequires : attrs-python
 BuildRequires : funcsigs
 BuildRequires : nose
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : pluggy-python
-BuildRequires : py-python
-BuildRequires : pytest-python
-
+BuildRequires : python-core
 BuildRequires : python-mock
 BuildRequires : python3-dev
 BuildRequires : setuptools
+BuildRequires : setuptools-legacypython
 BuildRequires : six
 
 %description
@@ -51,6 +49,7 @@ Mako Templates for Python
 %package bin
 Summary: bin components for the Mako package.
 Group: Binaries
+Requires: Mako-license
 
 %description bin
 bin components for the Mako package.
@@ -63,6 +62,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the Mako package.
+
+
+%package license
+Summary: license components for the Mako package.
+Group: Default
+
+%description license
+license components for the Mako package.
 
 
 %package python
@@ -92,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523538097
+export SOURCE_DATE_EPOCH=1530328517
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -100,10 +107,12 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 setup.py test || :
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
-export SOURCE_DATE_EPOCH=1523538097
+export SOURCE_DATE_EPOCH=1530328517
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/Mako
+cp LICENSE %{buildroot}/usr/share/doc/Mako/LICENSE
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 echo ----[ mark ]----
@@ -120,6 +129,10 @@ echo ----[ mark ]----
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/Mako/LICENSE
 
 %files python
 %defattr(-,root,root,-)
