@@ -6,7 +6,7 @@
 #
 Name     : Mako
 Version  : 1.0.7
-Release  : 41
+Release  : 42
 URL      : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source0  : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz
 Source99 : http://pypi.debian.net/Mako/Mako-1.0.7.tar.gz.asc
