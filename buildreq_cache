@@ -1,7 +1,8 @@
-1.0.9
+1.0.10
 atomicwrites-python
 attrs-python
 more-itertools-python
 pluggy-python
 py-python
+pytest
 pytest-python
