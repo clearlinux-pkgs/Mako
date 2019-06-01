@@ -5,16 +5,15 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.0.10
-Release  : 54
-URL      : https://files.pythonhosted.org/packages/f9/93/63f78c552e4397549499169198698de23b559b52e57f27d967690811d16d/Mako-1.0.10.tar.gz
-Source0  : https://files.pythonhosted.org/packages/f9/93/63f78c552e4397549499169198698de23b559b52e57f27d967690811d16d/Mako-1.0.10.tar.gz
-Source99 : https://files.pythonhosted.org/packages/f9/93/63f78c552e4397549499169198698de23b559b52e57f27d967690811d16d/Mako-1.0.10.tar.gz.asc
+Version  : 1.0.11
+Release  : 55
+URL      : https://files.pythonhosted.org/packages/37/d7/2287b48aaeccdf2c75040fa5db69f6fad1877483aa6ce68316ab959ad1a0/Mako-1.0.11.tar.gz
+Source0  : https://files.pythonhosted.org/packages/37/d7/2287b48aaeccdf2c75040fa5db69f6fad1877483aa6ce68316ab959ad1a0/Mako-1.0.11.tar.gz
+Source99 : https://files.pythonhosted.org/packages/37/d7/2287b48aaeccdf2c75040fa5db69f6fad1877483aa6ce68316ab959ad1a0/Mako-1.0.11.tar.gz.asc
 Summary  : Lightweight notification daemon for Wayland
 Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin = %{version}-%{release}
-Requires: Mako-license = %{version}-%{release}
 Requires: Mako-python = %{version}-%{release}
 Requires: Mako-python3 = %{version}-%{release}
 Requires: MarkupSafe
@@ -22,12 +21,15 @@ BuildRequires : MarkupSafe
 BuildRequires : buildreq-distutils3
 BuildRequires : funcsigs
 BuildRequires : nose
+BuildRequires : pluggy
+BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : pytest-python
 BuildRequires : python-core
 BuildRequires : python-mock
 BuildRequires : setuptools-legacypython
 BuildRequires : six
+BuildRequires : tox
+BuildRequires : virtualenv
 
 %description
 =========================
@@ -45,18 +47,9 @@ ties to Python calling and scoping semantics.
 %package bin
 Summary: bin components for the Mako package.
 Group: Binaries
-Requires: Mako-license = %{version}-%{release}
 
 %description bin
 bin components for the Mako package.
-
-
-%package license
-Summary: license components for the Mako package.
-Group: Default
-
-%description license
-license components for the Mako package.
 
 
 %package python
@@ -79,14 +72,14 @@ python3 components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.0.10
+%setup -q -n Mako-1.0.11
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557509750
+export SOURCE_DATE_EPOCH=1559408605
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -105,8 +98,6 @@ PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test ||
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/Mako
-cp LICENSE %{buildroot}/usr/share/package-licenses/Mako/LICENSE
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -118,10 +109,6 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/mako-render
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/Mako/LICENSE
 
 %files python
 %defattr(-,root,root,-)
