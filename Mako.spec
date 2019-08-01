@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.0.14
-Release  : 59
-URL      : https://files.pythonhosted.org/packages/1b/a5/023aba3d69aacef6bfc13797bdc3dd03c6fb4ae2dcd2fde7dffc37233924/Mako-1.0.14.tar.gz
-Source0  : https://files.pythonhosted.org/packages/1b/a5/023aba3d69aacef6bfc13797bdc3dd03c6fb4ae2dcd2fde7dffc37233924/Mako-1.0.14.tar.gz
-Source99 : https://files.pythonhosted.org/packages/1b/a5/023aba3d69aacef6bfc13797bdc3dd03c6fb4ae2dcd2fde7dffc37233924/Mako-1.0.14.tar.gz.asc
+Version  : 1.1.0
+Release  : 60
+URL      : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
+Source1 : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz.asc
 Summary  : Lightweight notification daemon for Wayland
 Group    : Development/Tools
 License  : MIT
@@ -82,14 +82,14 @@ python3 components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.0.14
+%setup -q -n Mako-1.1.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563729541
+export SOURCE_DATE_EPOCH=1564683601
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -101,11 +101,6 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
-%check
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test || :
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
