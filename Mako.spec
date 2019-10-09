@@ -6,11 +6,11 @@
 #
 Name     : Mako
 Version  : 1.1.0
-Release  : 60
+Release  : 61
 URL      : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
 Source1 : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz.asc
-Summary  : Lightweight notification daemon for Wayland
+Summary  : A super-fast templating language that borrows the  best ideas from the existing templating languages.
 Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin = %{version}-%{release}
@@ -25,25 +25,26 @@ BuildRequires : nose
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-BuildRequires : python-core
 BuildRequires : python-mock
-BuildRequires : setuptools-legacypython
 BuildRequires : six
 BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-=========================
 Mako Templates for Python
-=========================
-Mako is a template library written in Python. It provides a familiar, non-XML
-syntax which compiles into Python modules for maximum performance. Mako's
-syntax and API borrows from the best ideas of many others, including Django
-templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded
-Python (i.e. Python Server Page) language, which refines the familiar ideas
-of componentized layout and inheritance to produce one of the most
-straightforward and flexible models available, while also maintaining close
-ties to Python calling and scoping semantics.
+        =========================
+        
+        Mako is a template library written in Python. It provides a familiar, non-XML 
+        syntax which compiles into Python modules for maximum performance. Mako's 
+        syntax and API borrows from the best ideas of many others, including Django
+        templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded 
+        Python (i.e. Python Server Page) language, which refines the familiar ideas
+        of componentized layout and inheritance to produce one of the most 
+        straightforward and flexible models available, while also maintaining close 
+        ties to Python calling and scoping semantics.
+        
+        Nutshell
+        ========
 
 %package bin
 Summary: bin components for the Mako package.
@@ -89,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564683601
+export SOURCE_DATE_EPOCH=1570660364
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

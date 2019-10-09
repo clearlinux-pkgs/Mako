@@ -5,5 +5,3 @@ python-mock
 nose
 six
 funcsigs
-python-core
-setuptools-legacypython
