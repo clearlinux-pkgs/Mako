@@ -5,19 +5,20 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.1.0
-Release  : 64
-URL      : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz
-Source1 : https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz.asc
-Summary  : A super-fast templating language that borrows the  best ideas from the existing templating languages.
+Version  : 1.1.1
+Release  : 65
+URL      : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz
+Source1  : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz.asc
+Summary  : Lightweight notification daemon for Wayland
 Group    : Development/Tools
 License  : MIT
 Requires: Mako-bin = %{version}-%{release}
-Requires: Mako-license = %{version}-%{release}
 Requires: Mako-python = %{version}-%{release}
 Requires: Mako-python3 = %{version}-%{release}
+Requires: Babel
 Requires: MarkupSafe
+BuildRequires : Babel
 BuildRequires : MarkupSafe
 BuildRequires : buildreq-distutils3
 BuildRequires : funcsigs
@@ -31,36 +32,24 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+=========================
 Mako Templates for Python
-        =========================
-        
-        Mako is a template library written in Python. It provides a familiar, non-XML 
-        syntax which compiles into Python modules for maximum performance. Mako's 
-        syntax and API borrows from the best ideas of many others, including Django
-        templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded 
-        Python (i.e. Python Server Page) language, which refines the familiar ideas
-        of componentized layout and inheritance to produce one of the most 
-        straightforward and flexible models available, while also maintaining close 
-        ties to Python calling and scoping semantics.
-        
-        Nutshell
-        ========
+=========================
+Mako is a template library written in Python. It provides a familiar, non-XML
+syntax which compiles into Python modules for maximum performance. Mako's
+syntax and API borrows from the best ideas of many others, including Django
+templates, Cheetah, Myghty, and Genshi. Conceptually, Mako is an embedded
+Python (i.e. Python Server Page) language, which refines the familiar ideas
+of componentized layout and inheritance to produce one of the most
+straightforward and flexible models available, while also maintaining close
+ties to Python calling and scoping semantics.
 
 %package bin
 Summary: bin components for the Mako package.
 Group: Binaries
-Requires: Mako-license = %{version}-%{release}
 
 %description bin
 bin components for the Mako package.
-
-
-%package license
-Summary: license components for the Mako package.
-Group: Default
-
-%description license
-license components for the Mako package.
 
 
 %package python
@@ -83,14 +72,16 @@ python3 components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.1.0
+%setup -q -n Mako-1.1.1
+cd %{_builddir}/Mako-1.1.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570660364
+export SOURCE_DATE_EPOCH=1579625722
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -105,8 +96,6 @@ python3 setup.py build
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/Mako
-cp LICENSE %{buildroot}/usr/share/package-licenses/Mako/LICENSE
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -118,10 +107,6 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/mako-render
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/Mako/LICENSE
 
 %files python
 %defattr(-,root,root,-)

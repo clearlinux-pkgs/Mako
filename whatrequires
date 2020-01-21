@@ -3,4 +3,5 @@ alembic
 dogpile.cache
 gobject-introspection
 pysaml2
+salt
 volk
