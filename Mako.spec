@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.1.1
-Release  : 65
-URL      : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz
-Source1  : https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz.asc
+Version  : 1.1.2
+Release  : 66
+URL      : https://files.pythonhosted.org/packages/42/64/fc7c506d14d8b6ed363e7798ffec2dfe4ba21e14dda4cfab99f4430cba3a/Mako-1.1.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/42/64/fc7c506d14d8b6ed363e7798ffec2dfe4ba21e14dda4cfab99f4430cba3a/Mako-1.1.2.tar.gz
+Source1  : https://files.pythonhosted.org/packages/42/64/fc7c506d14d8b6ed363e7798ffec2dfe4ba21e14dda4cfab99f4430cba3a/Mako-1.1.2.tar.gz.asc
 Summary  : Lightweight notification daemon for Wayland
 Group    : Development/Tools
 License  : MIT
@@ -66,21 +66,22 @@ python components for the Mako package.
 Summary: python3 components for the Mako package.
 Group: Default
 Requires: python3-core
+Provides: pypi(Mako)
 
 %description python3
 python3 components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.1.1
-cd %{_builddir}/Mako-1.1.1
+%setup -q -n Mako-1.1.2
+cd %{_builddir}/Mako-1.1.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579625722
+export SOURCE_DATE_EPOCH=1583161713
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
