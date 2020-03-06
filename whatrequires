@@ -2,6 +2,8 @@
 alembic
 dogpile.cache
 gobject-introspection
+pecan
+performance
 pysaml2
 salt
 volk
