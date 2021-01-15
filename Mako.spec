@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x330239C1C4DAFEE1 (classic@zzzcomputing.com)
 #
 Name     : Mako
-Version  : 1.1.3
-Release  : 74
-URL      : https://files.pythonhosted.org/packages/72/89/402d2b4589e120ca76a6aed8fee906a0f5ae204b50e455edd36eda6e778d/Mako-1.1.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/72/89/402d2b4589e120ca76a6aed8fee906a0f5ae204b50e455edd36eda6e778d/Mako-1.1.3.tar.gz
-Source1  : https://files.pythonhosted.org/packages/72/89/402d2b4589e120ca76a6aed8fee906a0f5ae204b50e455edd36eda6e778d/Mako-1.1.3.tar.gz.asc
+Version  : 1.1.4
+Release  : 75
+URL      : https://files.pythonhosted.org/packages/5c/db/2d2d88b924aa4674a080aae83b59ea19d593250bfe5ed789947c21736785/Mako-1.1.4.tar.gz
+Source0  : https://files.pythonhosted.org/packages/5c/db/2d2d88b924aa4674a080aae83b59ea19d593250bfe5ed789947c21736785/Mako-1.1.4.tar.gz
+Source1  : https://files.pythonhosted.org/packages/5c/db/2d2d88b924aa4674a080aae83b59ea19d593250bfe5ed789947c21736785/Mako-1.1.4.tar.gz.asc
 Summary  : A super-fast templating language that borrows the  best ideas from the existing templating languages.
 Group    : Development/Tools
 License  : MIT
@@ -87,15 +87,15 @@ python3 components for the Mako package.
 
 
 %prep
-%setup -q -n Mako-1.1.3
-cd %{_builddir}/Mako-1.1.3
+%setup -q -n Mako-1.1.4
+cd %{_builddir}/Mako-1.1.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591111599
+export SOURCE_DATE_EPOCH=1610672373
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -111,7 +111,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Mako
-cp %{_builddir}/Mako-1.1.3/LICENSE %{buildroot}/usr/share/package-licenses/Mako/a1f5eb1583a13a9074b93502e2b401df6e3c6fd6
+cp %{_builddir}/Mako-1.1.4/LICENSE %{buildroot}/usr/share/package-licenses/Mako/a1f5eb1583a13a9074b93502e2b401df6e3c6fd6
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :

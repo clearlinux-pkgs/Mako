@@ -1,9 +1,4 @@
 # This file contains recursive sources that require this package
-alembic
-dogpile.cache
 gobject-introspection
+libplacebo
 pecan
-performance
-pysaml2
-salt
-volk
